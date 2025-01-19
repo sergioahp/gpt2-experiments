@@ -41,7 +41,7 @@ BUILD_DIR = PROJECT_ROOT / 'build'
 SERVER_CODE_ARCHIVE = BUILD_DIR / f'{SERVER_PROJECT_NAME}.tar.gz'
 REMOTE_SERVER_CODE_ARCHIVE = PurePosixPath(f'{SERVER_CODE_ARCHIVE.name}')
 REMOTE_SERVER_PROJECT_ROOT = PurePosixPath(f'{SERVER_PROJECT_NAME}')
-ACTIVATE_SCRIPT = Path("~/server_code/.venv/bin/activate")
+ACTIVATE_SCRIPT = PurePosixPath("~/server_code/.venv/bin/activate")
 HOME = Path('~/')
 BASHRC = HOME / '.bashrc'
 
@@ -90,4 +90,4 @@ print(str(DATA_DOWNLOADER))
 print(str(SERVER_DATA_DOWNLOADER))
 conn.put(str(DATA_DOWNLOADER), str(SERVER_DATA_DOWNLOADER))
 conn.run(f'python3 {shlex.quote(str(SERVER_DATA_DOWNLOADER))}')
-conn.run(f'echo "source {str(ACTIVATE_SCRIPT.expanduser().resolve())}" >> {str(BASHRC.expanduser().resolve())}')
+conn.run(f'echo "source {str(ACTIVATE_SCRIPT)}" >> {str(BASHRC)}')
