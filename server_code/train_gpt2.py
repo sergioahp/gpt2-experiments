@@ -775,7 +775,8 @@ if __name__ == "__main__":
 
         # checkpointing
         if (last_step or (args.save_every > 0 and step %  args.save_every == 0)):
-            optimizer.consolidate_state_dict(to=0)
+            if ddp:
+                optimizer.consolidate_state_dict(to=0)
             if master_process:
                 model_sd = raw_model.state_dict()
                 if args.compile:
