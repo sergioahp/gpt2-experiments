@@ -791,7 +791,14 @@ if __name__ == "__main__":
                             logger.error('A param of the compiled model does not start with _orig_mod.')
                     model_sd = renamed_model_sd
                 # we need to consolidate the state of the dataloader somehow(?)
-                log = dict(step=step, model=model_sd, optimizer=optimizer.state_dict(), run_id=run_id, train_loader=train_loader.state_dict(for_next=True))
+                log = dict(step=step,
+                        model=model_sd,
+                        optimizer=optimizer.state_dict(),
+                        run_id=run_id,
+                        train_loader=train_loader.state_dict(for_next=True),
+                        config=model.config,
+                        code=code,
+                )
                 torch.save(log, f'{logdir}/state_step_{step}.pt')
 
 
