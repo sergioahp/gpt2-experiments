@@ -770,7 +770,9 @@ if __name__ == "__main__":
                         csv_writer.writerow(['iso8601time', 'unixtime', 'step', 'hellaswag_acc'])
                     timestamp_iso = datetime.now(mexico_tz).isoformat()
                     timestamp_unix = time.time()
-                    csv_writer.writerow([timestamp_iso, timestamp_unix, step, acc_norm.item()])
+                    if ddp:
+                        acc_norm = acc_norm.item()
+                    csv_writer.writerow([timestamp_iso, timestamp_unix, step, acc_norm])
 
 
         # checkpointing
